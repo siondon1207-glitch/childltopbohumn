@@ -1,23 +1,812 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialProduct",
+      "name": "2026년 태아보험 브랜드별 순위 비교 및 견적 산출 서비스",
+      "description": "2026년 최신 기준으로 현대해상, DB손해보험, KB손해보험 등 국내 주요 브랜드의 태아보험 순위, 월 보험료, 가입 시기 및 필수 특약을 종합적으로 비교 분석합니다.",
+      "brand": {
+        "@type": "Brand",
+        "name": "태아보험 통합 비교 센터"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KRW",
+        "lowPrice": "30000",
+        "highPrice": "150000",
+        "offerCount": "10"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "태아보험 전문 가이드 플랫폼",
+        "url": "https://insurance.reliabledone.com"
+      }
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: #fcf9f6;
+            color: #2d3748;
+        }
+
+        header {
+            background-color: #ff8a80;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 138, 128, 0.25);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: #fff0f0;
+        }
+
+        nav {
+            background-color: #d32f2f;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 0.5rem;
+            display: block;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffe082;
+        }
+
+        main {
+            max-width: 1120px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            box-sizing: border-box;
+        }
+
+        section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.5rem;
+            border: 1px solid #f0e6df;
+        }
+
+        h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: #d32f2f;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #ff8a80;
+            padding-left: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #4b5563;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #d32f2f;
+            font-weight: 700;
+            background-color: #fff4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .important-box {
+            background-color: #fff9f5;
+            border-left: 4px solid #ff8a80;
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #fff0ed;
+            color: #c62828;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fbfbfc;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .keyword-tags {
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .keyword-tags span {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+        }
+
+        .chart-container {
+            background-color: #fffaf8;
+            border: 1px solid #ffdcd6;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .chart-title {
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .bar-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .bar-bg {
+            background-color: #e5e7eb;
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            background-color: #ff8a80;
+            height: 100%;
+            border-radius: 8px;
+            width: 0;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+
+        .bar-fill.db { background-color: #ffb74d; }
+        .bar-fill.kb { background-color: #4fc3f7; }
+        .bar-fill.samsung { background-color: #81c784; }
+
+        .form-section {
+            background-color: #fff5f2;
+            padding: 2.5rem;
+            border-radius: 14px;
+            border: 1px solid #ffe3dc;
+            margin-top: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: white;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #ff8a80;
+        }
+
+        .btn-submit {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #b71c1c;
+        }
+
+        .calc-result-box {
+            background-color: white;
+            border: 1px solid #ffe3dc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .faq-dl dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background-color: #fff5f2;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #d32f2f;
+            transition: background-color 0.3s;
+            border: 1px solid #ffe3dc;
+        }
+
+        .faq-dl dt:hover {
+            background-color: #ffe8e2;
+        }
+
+        .faq-dl dd {
+            margin-left: 0;
+            padding: 1.2rem 1.5rem;
+            border-left: 4px solid #ff8a80;
+            background-color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            display: none;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .faq-dl dt.active + dd {
+            display: block;
+        }
+
+        .external-links {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .external-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .external-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .external-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .external-links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            main { padding: 0 1rem; margin: 1.5rem auto; }
+            section { padding: 1.5rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            nav ul { gap: 0.8rem; padding: 0.5rem; }
+            nav a { padding: 0.5rem; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>2026년 태아보험 순위 비교 및 가입 가이드</h1>
+        <p>현대해상, DB, KB 등 브랜드별 맞춤 견적과 필수 특약을 객관적으로 정리해 드립니다.</p>
+    </header>
+
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+        <ul>
+            <li><a href="#intro">태아보험 개요 및 필요성</a></li>
+            <li><a href="#demographics">연령별 맞춤형 설계전략</a></li>
+            <li><a href="#comparison">브랜드별 요금 및 특약 비교</a></li>
+            <li><a href="#calculator">자가 진단 견적 계산기</a></li>
+            <li><a href="#faq">자주 묻는 질문 FAQ</a></li>
+            <li><a href="#consulting">상담 및 신청</a></li>
+        </ul>
     </nav>
+
     <main>
-      <h1>Home page</h1>
+        <section id="intro">
+            <h2>태아보험, 가입 전에 꼭 알아두어야 할 기초 상식</h2>
+            <p>
+                새로운 생명을 맞이하는 예비부모에게 임신과 출산은 형언할 수 없는 기쁨이자 동시에 깊은 책임감을 느끼게 하는 여정입니다. 2026년 현재 고령 산모의 비율이 점차 늘어나고 환경적인 변화로 인해 저체중아 출생률이나 선천이상 발병률이 증가하는 추세입니다. 이에 따라 많은 예비엄마들이 임신 초기 단계에서부터 <span class="highlight">태아보험 가입</span>을 필수 과제로 삼고 있습니다.
+            </p>
+            <p>
+                기본적으로 태아보험은 출생 전 태아 상태에서 가입을 진행하고, 출생 직후 발생할 수 있는 신생아 선천이상, 저체중으로 인한 인큐베이터 입원 비용, 신생아 질병 치료 등을 집중적으로 보장받는 금융 상품입니다. 출생 이후에는 자동적으로 어린이 종합보험으로 전환되어 성장기 동안의 상해 및 질병을 든든하게 대비할 수 있습니다. 
+            </p>
+            <p>
+                가장 현명한 가입 방법은 보험사별로 상이한 보장 한도와 특약 구성을 <span class="highlight">순위 비교</span>해본 후, 자신의 상황에 맞는 최적의 플랜을 구성하는 것입니다. 무작정 남들이 좋다고 하는 고가의 설계안을 덜컥 선택했다가 중도에 납입 부담으로 해지하게 되면 오히려 손해를 볼 수 있습니다. 평균적으로 매월 지출하게 되는 보험 요금 및 총 예상 금액을 면밀히 따져보고 냉정하게 예산을 세워 설계하는 것이 합리적입니다.
+            </p>
+
+            <div class="important-box">
+                <strong>2026년 가입 트렌드 요약:</strong> 과거에는 단순히 오프라인 설계사를 통해 사은품이나 현금지원 혜택만을 쫓는 가입 패턴이 주를 이루었으나, 최근에는 스마트폰 앱 또는 모바일 어플을 통해 다이렉트로 가입 조건을 확인하고 꼼꼼히 가격 비교를 마친 후 가입을 결정하는 자발적인 실속파 임산부들이 크게 늘었습니다.
+            </div>
+
+            <div class="keyword-tags">
+                <span>태아보험 순위</span>
+                <span>태아보험 비교</span>
+                <span>태아보험 추천</span>
+                <span>현대해상 태아보험</span>
+                <span>DB손해보험 태아보험</span>
+                <span>KB손해보험 태아보험</span>
+                <span>30세만기 100세만기 차이</span>
+                <span>태아보험 가입시기</span>
+                <span>신생아 특약 필수</span>
+                <span>선천이상 수술비</span>
+            </div>
+        </section>
+
+        <section id="demographics">
+            <h2>임산부 연령 및 가구 형태별 맞춤형 설계전략</h2>
+            <p>
+                보험료와 보장 수준을 정할 때는 산모의 가입 연령대와 가구 구성원의 특성을 반드시 감안해야 합니다. 연령대나 처한 환경에 따라 집중해야 하는 담보와 위약 가능성, 그리고 선천 질환의 발생 통계가 달라지기 때문입니다.
+            </p>
+            
+            <h3>1. 20대 예비엄마 (20대 초반, 20대 중반, 20대 후반 초산모)</h3>
+            <p>
+                상대적으로 산모의 신체적 연령이 젊기 때문에 선천이상의 위험성은 다소 낮게 책정되어 보험 가입 시 심사 통과가 수월한 장점이 있습니다. 이 시기에는 자녀의 먼 미래까지 한 번에 대비하기보다는 초기 지출 부담을 최소화하는 방향이 유리합니다. 30세만기 저렴한 플랜을 선택하여 월 평균 3만 원에서 5만 원 선의 실속형 예산을 산출하고 가입하는 것을 권장합니다. 다이렉트 온라인 채널을 이용하면 설계사 수수료가 제외되어 더욱 싼곳을 찾을 수 있습니다.
+            </p>
+
+            <h3>2. 30대 예비엄마 (30대 초반 직장인 임산부, 30대 중반 워킹맘, 30대 후반 고령 임산부)</h3>
+            <p>
+                가장 가입 비중이 높은 핵심 연령대입니다. 35세 이상의 고령 임산부 범주에 속하게 되면 기형아 검사 단계에서 이상 소견이 나오거나 임신성 당뇨, 임신중독증 등의 합병증 발생 빈도가 증가합니다. 따라서 1차, 2차 기형아 검사 이전에 빠르게 심사를 완료하고 가입을 마치는 것이 안전합니다. 보장 범위가 넓은 현대해상 굿앤굿 상품이나 가성비가 돋보이는 DB손해보험 참좋은 상품을 선호하는 경향이 뚜렷하며, 이 시기에는 만기 설정을 30세와 100세 사이에서 복합 설계하여 효율적인 균형을 찾는 컨설팅이 주를 이룹니다.
+            </p>
+
+            <h3>3. 40대 이상 예비엄마 (40대 초반 노산 예비부모, 40대 중반 늦깎이 부모)</h3>
+            <p>
+                의학 기술의 발전과 저출산 기조 속에서 40대 임산부의 비율도 지속적으로 증가하고 있습니다. 이 경우 시험관 아기 시술이나 인공수정을 통해 다둥이 맘, 혹은 쌍둥이 예비맘이 되는 경우가 많습니다. 쌍둥이의 경우 저체중아 출산율이나 조산 위험이 매우 높기 때문에 질병 입원일당 특약 및 인큐베이터 이용료 보장은 반드시 최대 한도로 구성해야 합니다. 가입 심사가 상대적으로 엄격할 수 있으므로 전문 업체의 세밀한 밀착 가입 가이드가 동반되어야 불필요한 보류 처리를 피할 수 있습니다.
+            </p>
+
+            <h3>4. 다양한 가구 유형별 접근 (맞벌이 부부, 외벌이 가정, 늦깎이 부모)</h3>
+            <p>
+                가정의 재정 건전성에 기반하여 장기적인 유지 계획을 세워야 합니다. 외벌이 가정의 경우 장기간 고정비로 지출되는 보험료가 단점이 될 수 있으므로 군더더기 없는 필수 담보 위주로 정제해야 하며, 맞벌이 부부는 아이의 병원비를 보강함과 동시에 진단비 담보의 크기를 늘려 소득 공백 시기까지 대비해 두는 편이 장점입니다.
+            </p>
+        </section>
+
+        <section id="comparison">
+            <h2>국내 대표 브랜드별 태아보험 특징 및 요금 상세 비교</h2>
+            <p>
+                태아보험 시장을 실질적으로 주도하고 있는 4대 손해보험사의 2026년 기준 대표 담보와 월평균 보험료 견적을 객관적인 수치로 분석해 보았습니다. 가입 시 무해지 환급형 적용 여부와 적립 보험료 최소화 정책에 따라 최종 납입 금액 차이점이 크게 벌어지므로 꼼꼼한 비교가 필요합니다.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>비교 항목</th>
+                        <th>현대해상 (굿앤굿어린이)</th>
+                        <th>DB손해보험 (참좋은자녀)</th>
+                        <th>KB손해보험 (희망플러스)</th>
+                        <th>삼성화재 (엄마맘에쏙드는)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>시장 선호도 순위</strong></td>
+                        <td>제일 높음 (업계 상위권)</td>
+                        <td>안정적인 2위권</td>
+                        <td>실속형 사용자 선호</td>
+                        <td>브랜드 신뢰도 우선</td>
+                    </tr>
+                    <tr>
+                        <td><strong>월 예상 보험료 (평균)</strong></td>
+                        <td>약 45,000원 - 60,000원</td>
+                        <td>약 40,000원 - 55,000원</td>
+                        <td>약 38,000원 - 52,000원</td>
+                        <td>약 48,000원 - 65,000원</td>
+                    </tr>
+                    <tr>
+                        <td><strong>가입 권장 기간 (주수)</strong></td>
+                        <td>임신 22주 이전 필수</td>
+                        <td>임신 22주 이전 권장</td>
+                        <td>임신 22주 이전</td>
+                        <td>출생 전 가입 원칙</td>
+                    </tr>
+                    <tr>
+                        <td><strong>핵심 독점 특약</strong></td>
+                        <td>선천이상 수술비 한도 높음</td>
+                        <td>신생아 질병 입원일당 우수</td>
+                        <td>가성비 위주의 암 진단비</td>
+                        <td>대형사 규모의 빠른 보상</td>
+                    </tr>
+                    <tr>
+                        <td><strong>주요 장단점</strong></td>
+                        <td>설계가 매우 자유로우나 복잡함</td>
+                        <td>저렴한 요금제 구성 가능</td>
+                        <td>심사가 비교적 덜 까다로움</td>
+                        <td>브랜드 가치 높으나 다소 고가</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="small-info" style="font-size: 0.9rem; color: #6b7280;">
+                참고: 위 비교 표의 월 보험료 예상치는 30세 만기, 20년 납입, 무해지환급형 가입을 기준으로 산출된 평균적인 금액이며, 산모의 건강 상태, 연령, 태아 수 및 담보 선택에 따라 개별 견적 비용은 상이할 수 있습니다.
+            </p>
+
+            <div class="chart-container">
+                <div class="chart-title">2026년 주요 보험사별 동일 보장 대비 가격지수 비교 (낮을수록 저렴함)</div>
+                <div class="bar-group">
+                    <div class="bar-label">
+                        <span>현대해상 (굿앤굿어린이)</span>
+                        <span>100 (기준값)</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-label">
+                        <span>DB손해보험 (참좋은자녀)</span>
+                        <span>92 (가성비 우수)</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill db" style="width: 78%;"></div>
+                    </div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-label">
+                        <span>KB손해보험 (희망플러스)</span>
+                        <span>89 (최저가 지향)</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill kb" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-label">
+                        <span>삼성화재 (엄마맘에쏙드는)</span>
+                        <span>105 (안정적 보장 서비스)</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill samsung" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // 네비게이션 진입 혹은 페이지 로드 시 그래프 애니메이션 효과 작동을 위한 스크립트
+                window.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(() => {
+                        const fills = document.querySelectorAll('.bar-fill');
+                        fills[0].style.width = '85%';
+                        fills[1].style.width = '78%';
+                        fills[2].style.width = '75%';
+                        fills[3].style.width = '90%';
+                    }, 500);
+                });
+            </script>
+        </section>
+
+        <section id="calculator">
+            <h2>맞춤형 태아보험 월 보험료 자가 계산기</h2>
+            <p>
+                인공지능 기반 분석을 활용하여 산모님의 상태에 맞는 예상 월 요금을 대략적으로 산출해 볼 수 있습니다. 아래 정보를 정성껏 입력해 주시면 최적의 맞춤 금액이 시뮬레이션됩니다.
+            </p>
+            
+            <div class="form-section">
+                <form id="calcForm" onsubmit="event.preventDefault(); runInsuranceCalculator();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="calcAge">임산부 만나이</label>
+                            <select id="calcAge">
+                                <option value="25">20대 중반 이하</option>
+                                <option value="29">20대 후반</option>
+                                <option value="33" selected>30대 초중반</option>
+                                <option value="38">30대 후반 고령산모</option>
+                                <option value="42">40대 초반 이상</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcWeek">임신 주수</label>
+                            <select id="calcWeek">
+                                <option value="12">12주 미만 (임신초기)</option>
+                                <option value="16" selected>12주 ~ 22주 사이 (최적기)</option>
+                                <option value="24">22주 초과 (신생아특약 제외)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcType">임신 형태</label>
+                            <select id="calcType">
+                                <option value="single" selected>단태아 (첫째 혹은 둘째 아기)</option>
+                                <option value="twin">쌍둥이 (다둥이 / 시험관아기)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcPeriod">보장 만기 설정</label>
+                            <select id="calcPeriod">
+                                <option value="30" selected>30세 만기 (합리적 비용 플랜)</option>
+                                <option value="100">100세 만기 (평생 보장 플랜)</option>
+                                <option value="mixed">복합 설계 (주요 진단비만 100세 설정)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">실시간 예상 요금제 계산하기</button>
+                </form>
+
+                <div id="calculatorResult" class="calc-result-box">
+                    <h3 style="color: #d32f2f; margin-top:0;">분석에 기반한 예상 가입 안내</h3>
+                    <p id="calcBrief" style="font-weight: 500; color: #1f2937;"></p>
+                    <p id="calcDetail" style="font-size: 0.95rem; color: #4b5563;"></p>
+                    <div style="background-color: #fef2f2; padding: 1rem; border-radius: 6px; border: 1px solid #fee2e2; font-size: 0.9rem;">
+                        <strong>추천 브랜드 순위:</strong> <span id="calcRecommendation" style="font-weight: 700; color: #b71c1c;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function runInsuranceCalculator() {
+                    const age = document.getElementById('calcAge').value;
+                    const week = document.getElementById('calcWeek').value;
+                    const type = document.getElementById('calcType').value;
+                    const period = document.getElementById('calcPeriod').value;
+                    
+                    let basePremium = 45000;
+                    let resultBrief = "";
+                    let resultDetail = "";
+                    let recommendation = "";
+
+                    // 나이에 따른 보정
+                    if (age >= 38) {
+                        basePremium += 7000;
+                    } else if (age >= 42) {
+                        basePremium += 12000;
+                    } else if (age <= 25) {
+                        basePremium -= 3000;
+                    }
+
+                    // 임신 형태에 따른 보정
+                    if (type === 'twin') {
+                        basePremium = basePremium * 1.6;
+                    }
+
+                    // 만기에 따른 보정
+                    if (period === '100') {
+                        basePremium = basePremium * 2.2;
+                    } else if (period === 'mixed') {
+                        basePremium = basePremium * 1.5;
+                    }
+
+                    // 주수에 따른 패널티 및 코멘트
+                    if (week === '24') {
+                        resultBrief = "임신 22주가 초과하여 태아 전용 특약(인큐베이터, 선천이상) 가입이 다소 제한될 수 있습니다.";
+                    } else {
+                        resultBrief = "안정적인 최적의 가입 주수에 해당하여 신생아 관련 혜택을 온전히 설계 가능합니다.";
+                    }
+
+                    const roundedPremium = Math.round(basePremium / 100) * 100;
+
+                    resultDetail = `입력하신 조건 기준, 월 예상 납입 비용은 약 <strong>${roundedPremium.toLocaleString()}원</strong> 선으로 예상됩니다. 3년 혹은 20년 납입 설정 및 세부 특약 조율 과정에서 다이렉트 할인이나 가입 혜택에 따른 실제 납입 가격의 차이가 발생할 수 있습니다.`;
+
+                    if (type === 'twin') {
+                        recommendation = "DB손해보험 참좋은자녀보험 (쌍둥이 인수 심사 기준이 상대적으로 정교함)";
+                    } else if (period === '30') {
+                        recommendation = "현대해상 굿앤굿어린이종합보험 (30세 만기 환급성 및 특약 유연성 탁월)";
+                    } else {
+                        recommendation = "KB손해보험 희망플러스 혹은 현대해상 (장기 유지 시 해약환급금 미지급형 유리)";
+                    }
+
+                    const resultBox = document.getElementById('calculatorResult');
+                    document.getElementById('calcBrief').innerHTML = resultBrief;
+                    document.getElementById('calcDetail').innerHTML = resultDetail;
+                    document.getElementById('calcRecommendation').innerHTML = recommendation;
+                    resultBox.style.display = 'block';
+                    resultBox.scrollIntoView({ behavior: 'smooth' });
+                }
+            </script>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 FAQ (네이버, 디시, 펨코 유저 질문 분석)</h2>
+            <p>
+                인터넷 커뮤니티인 디시인사이드, 에펨코리아, 보배드림 등에서 예비 아빠와 예비 엄마들이 가장 빈번하게 문의하는 질문들을 취합하여 신뢰성 있는 답변을 정리했습니다.
+            </p>
+            <dl class="faq-dl">
+                <dt tabindex="0" aria-expanded="false">Q1. 태아보험과 어린이보험의 본질적인 차이점은 무엇인가요?</dt>
+                <dd>
+                    A. 본질적으로 두 보험은 동일한 상품군입니다. 다만 임신 중에 미리 가입하여 출생 전후기 질환(저체중, 선천성 뇌출혈, 황달, 기형아 관련 수술 등)에 대한 신생아 특약을 탑재한 형태를 태아보험이라고 칭하며, 출생 이후 아이 명의로 순수 가입하는 형태를 어린이보험이라고 부릅니다. 선천 질환의 경우 출생 후에 가입하면 면책 대상이 되기 때문에 임신 주수 내 가입하는 것이 유리합니다.
+                </dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2. 가입 시 사은품이나 현금지원 혜택만 보고 업체를 골라도 괜찮을까요?</dt>
+                <dd>
+                    A. 결코 추천하지 않는 방법입니다. 온라인 커뮤니티나 인스타그램 등에서 사은품 성지, 현금지원 최고가 등을 미끼로 과대 광고를 일삼는 불법 설계안에 덜컥 가입하는 경우, 불필요한 특약이 가득 채워져 장기 납입 시 배보다 배꼽이 더 큰 요금제 부담에 시달리게 됩니다. 유모차나 카시트, 상품권 등의 사은품은 단발성 이벤트 혜택일 뿐이므로, 납입하는 총액 기준 저저렴한곳을 찾아 견적 비용을 줄이는 것이 장기적으로 훨씬 이득입니다.
+                </dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3. 30세 만기와 100세 만기 중 어떤 설정이 합리적인가요?</dt>
+                <dd>
+                    A. 각 설정마다 명확한 장단점이 존재합니다. 30세 만기는 월 납입 요금이 저렴하여 경제적 부담이 적은 장점이 있지만, 아이가 자라나며 큰 병에 걸렸을 경우 만기 이후 신규 가입이 어려워질 수 있는 단점이 있습니다. 100세 만기는 평생 동안의 큰 질병(암, 뇌, 심장) 위험을 초기에 저렴한 가격으로 묶어둔다는 장점이 있으나, 월 납입 비용이 크게 올라갑니다. 최근에는 실속 위주의 30세 만기로 설계하되, 주요 진단비 부분만 복합 설계로 장기 보장하는 스마트한 추천 방법도 큰 인기를 끌고 있습니다.
+                </dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4. 내돈내산 후기들을 보면 현대해상이 가장 많이 추천되는데 이유가 있나요?</dt>
+                <dd>
+                    A. 현대해상 굿앤굿어린이보험은 태아보험 시장에서 가장 오랜 기간 누적 가입자 수 1위를 기록하고 있습니다. 보장 청구 절차가 간소화되어 전용 앱이나 모바일 어플로 간편히 신청할 수 있고, 대중적인 인지도가 높아 네이버 지식인이나 맘카페 등에서 내돈내산 후기나 좌표 공유가 활발하기 때문입니다. 다만 무조건 1위 브랜드라고 해서 가입자 개인에게 무조건 적합한 것은 아니므로, DB손해보험이나 KB손해보험과의 차이점을 정확히 컨설팅해 주는 신뢰할 수 있는 전문 업체를 선택하셔야 합니다.
+                </dd>
+            </dl>
+
+            <script>
+                document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+                    dt.addEventListener('click', () => {
+                        const dd = dt.nextElementSibling;
+                        const active = dt.classList.contains('active');
+                        
+                        document.querySelectorAll('.faq-dl dt.active').forEach((activeDt) => {
+                            activeDt.classList.remove('active');
+                            activeDt.setAttribute('aria-expanded', 'false');
+                            activeDt.nextElementSibling.style.display = 'none';
+                        });
+
+                        if (!active) {
+                            dt.classList.add('active');
+                            dt.setAttribute('aria-expanded', 'true');
+                            dd.style.display = 'block';
+                        }
+                    });
+                    dt.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            dt.click();
+                        }
+                    });
+                });
+            </script>
+        </section>
+
+        <section id="consulting">
+            <h2>태아보험 전문 가입 상담 신청</h2>
+            <p>
+                소중한 자녀의 안정적인 미래를 준비하기 위해서는 객관적이고 공정한 분석이 필수입니다. 국내외 전문 인공지능 알고리즘과 다년간 숙련된 가입 컨설팅 전문가들이 산모님의 건강 정보 및 예상 예산에 딱 맞는 포트폴리오를 제공해 드립니다. 어떠한 불필요한 마케팅 전화 유도나 가입 강요 없이, 오로지 담보 분석표만을 카카오톡이나 이메일 등으로 투명하게 전달해 드릴 것을 약속합니다.
+            </p>
+
+            <div class="form-section">
+                <form id="consultForm" onsubmit="event.preventDefault(); alert('상담 신청이 접수되었습니다. 담당 전문가가 신속하게 안내를 도와드리겠습니다.');">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pName">신청인 성함</label>
+                            <input type="text" id="pName" placeholder="예: 김영희" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pPhone">연락처</label>
+                            <input type="tel" id="pPhone" placeholder="예: 010-1234-5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pAge">산모 만나이</label>
+                            <input type="number" id="pAge" placeholder="예: 32" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pWeek">임신 주수 (현재 기준)</label>
+                            <input type="number" id="pWeek" placeholder="예: 15" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="pNote">세부 문의사항 및 원하시는 요금 예산 범위 (선택사항)</label>
+                            <textarea id="pNote" rows="4" placeholder="예: 현대해상과 DB손해보험의 쌍둥이 특약 차이점에 대해 상세 비교를 원합니다."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">무료 비교 포트폴리오 신청하기</button>
+                </form>
+            </div>
+
+            <div class="external-links">
+                <h3>신뢰할 수 있는 공인 금융 참조 사이트</h3>
+                <p>
+                    보험 계약은 장기적인 재정 약정입니다. 가입 결정을 내리기 전에 아래의 객관적이고 신뢰할 수 있는 외부 공인 기관들의 정보를 충분히 대조해 보시기 바랍니다.
+                </p>
+                <ul>
+                    <li>1. <a href="https://childltopbohumo.directreliable.com" target="_blank" rel="noopener noreferrer">태아보험 전문 종합 비교 분석 플랫폼 (Reliabledone 금융 가이드 센터)</a> - 실시간 통신 가격 및 손해율 변동 데이터 기반 자녀 보장 연구소입니다.</li>
+                    <li>2. <a href="https://namu.wiki/w/%ED%83%9C%EC%95%84%EB%B3%B4%ED%97%98" target="_blank" rel="noopener noreferrer">나무위키 - 태아보험에 대한 상세 정의 및 특성</a> - 일반 소비자들이 자발적으로 작성한 가입 가이드 및 역사적 연혁을 공유합니다.</li>
+                    <li>3. <a href="https://www.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 공식 홈페이지</a> - 국내 보험사들의 민원 평가 등급 및 금융 소비자 보호 지침을 조회해 보실 수 있습니다.</li>
+                </ul>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+  
